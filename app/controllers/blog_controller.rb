@@ -1,5 +1,4 @@
 class BlogController < ApplicationController
-  require 'pry'
   def index
     blog_heading = Blog::blog_menu
     @blog = blog_heading.data.all_page.to_h
