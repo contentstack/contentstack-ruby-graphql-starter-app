@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'pry'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -9,6 +10,7 @@ Bundler.require(*Rails.groups)
 module ContentstackRubyGraphqlStarterApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+
     config.load_defaults 5.2
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'contentstack.yml')
@@ -21,5 +23,15 @@ module ContentstackRubyGraphqlStarterApp
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
   end
+
+  Client = Graphlient::Client.new("https://#{ENV["host"]}/stacks/#{ENV["api_key"]}?environment=#{ENV["environment"]}", 
+      headers: {
+        'access_token' => ENV["delivery_token"]
+      },
+      schema_path: Application.root.join('db/schema.json')
+      
+  )
+  
 end

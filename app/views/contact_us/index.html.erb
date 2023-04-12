@@ -1,2 +1,26 @@
-<h1>ContactUs#index</h1>
-<p>Find me in app/views/contact_us/index.html.erb</p>
+<% @home.each {|h| x = h.last[0]  %>
+<div data-pageref="" data-contenttype="page" data-locale="en-us">
+   <div class="contact-page-section max-width">
+      <div class="contact-page-content">
+         <h1><%= x["page_components"][0]["section_with_html_code"]["title"] %></h1>
+         <div>
+            <%== x["page_components"][0]["section_with_html_code"]["description"] %>
+         </div>
+      </div>
+      <div class="contact-page-form">
+         <%== x["page_components"][0]["section_with_html_code"]["html_code"] %>
+      </div>
+   </div>
+   <div class="contact-maps-section max-width">
+      <div class="maps-details">
+         <%== x["page_components"][1]["section_with_html_code"]["html_code"] %>
+         </div>
+      <div class="contact-maps-content">
+         <h2> <%= x["page_components"][1]["section_with_html_code"]["title"] %></h2>
+         <div>
+            <%== x["page_components"][1]["section_with_html_code"]["description"] %>
+         </div>
+      </div>
+   </div>
+</div>
+<% } %>

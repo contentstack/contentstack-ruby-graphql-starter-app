@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
-  require 'rubygems'
-  require 'pry'
+
   def index
-    @STACK = stack_connection
+    
+    response = Home::homeQuery
+    @home = response.data.all_page.to_h
   end
 end
