@@ -1,15 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ContentstackRubyGraphqlStarterApp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
+<head>
+   <meta charset="utf-8">
+   <link rel="icon" href="/favicon.ico">
+   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1">
+   <meta name="theme-color" content="#000000">
+   <meta name="description" content="Web site created using create-react-app">
+   <link rel="apple-touch-icon" href="/icon/icon-192x192.png">
+   <link href="https://fonts.googleapis.com/css?family=Inter&amp;display=swap" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+   <title>Contentstack-Ruby-Starter-App</title>
+   <%= stylesheet_link_tag '/css/main.css' %>
+</head>
+<body>
+   <div id="root">
+      <div class="App">
+         <div class="layout">
+            <header class="header">
+               <div class="note-div">
+                  <p>To Our Community: Please read this important update.</p>
+               </div>
+               <div class="max-width header-div">
+                  <div class="wrapper-logo"><a title="Contentstack" href="/"><img class="logo" src="https://images.contentstack.io/v3/assets/blt3f2ad18c8465b7b5/blt0e67a01398f3e8b3/629705a5705e576d615ae05b/company-logo.svg" alt="company-logo.svg"></a></div>
+                  <input class="menu-btn" type="checkbox" id="menu-btn"><label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                  <nav class="menu">
+                     <ul class="nav-ul header-ul">
+                        <li class="nav-li"><a aria-current="page" id="/" class="" href="/">Home</a></li>
+                        <li class="nav-li"><a class="" id="/about-us" href="/about-us">About Us</a></li>
+                        <li class="nav-li"><a class="" id="/blog" href="/blog">Blog</a></li>
+                        <li class="nav-li"><a class="" id="/contact-us" href="/contact-us">Contact Us</a></li>
+                     </ul>
+                  </nav>
+                 <!--  <div class="json-preview">
+                     <div class="Tooltip-Wrapper">
+                        <span data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="/json.svg" alt="JSON Preview icon"></span>
+                        <div class="Tooltip-Tip top">JSON Preview</div>
+                     </div>
+                  </div> -->
+               </div>
+            </header>
     <%= yield %>
-  </body>
+            <footer>
+               <div class="max-width footer-div">
+                  <div class="col-quarter"><a href="/"><img src="https://images.contentstack.io/v3/assets/blt3f2ad18c8465b7b5/blt0e67a01398f3e8b3/629705a5705e576d615ae05b/company-logo.svg" alt="contentstack logo" title="contentstack" class="logo footer-logo"></a></div>
+                  <div class="col-half">
+                     <nav>
+                        <ul class="nav-ul">
+                           <li class="footer-nav-li"><a aria-current="page" href="/">Home</a></li>
+                           <li class="footer-nav-li"><a aria-current="page" href="/about-us">About Us</a></li>
+                           <li class="footer-nav-li"><a aria-current="page" href="/blog">Blog</a></li>
+                           <li class="footer-nav-li"><a aria-current="page" href="/contact-us">Contact Us</a></li>
+                          
+                        </ul>
+                     </nav>
+                  </div>
+                  <div class="col-quarter social-link">
+                     <div class="social-nav"><a href="https://facebook.com" title="Facebook"><img src="https://images.contentstack.io/v3/assets/blt3f2ad18c8465b7b5/blt6833f07dc3aaa95a/629705778d4dbf77657f635b/facebook.svg" alt="social icon"></a><a href="https://twitter.com" title="Twitter"><img src="https://images.contentstack.io/v3/assets/blt3f2ad18c8465b7b5/blt375abc6560b67ff5/6297058f5b12cd7e1eada26e/Twitter.svg" alt="social icon"></a><a href="https://www.instagram.com/" title="Instagram"><img src="https://images.contentstack.io/v3/assets/blt3f2ad18c8465b7b5/blt7d03911f1919a14d/6297057b21928508728e7a02/Instagram.svg" alt="social icon"></a></div>
+                  </div>
+               </div>
+               <div class="copyright">
+                  <p>Copyright © 2022. LogoIpsum. All rights reserved.</p>
+               </div>
+            </footer>
+         </div>
+      </div>
+   </div>
+   <button class="cslp-tooltip" data-test-id="cs-cslp-tooltip" id="cslp-tooltip">
+      <div class="cslp-tooltip-child singular" data-test-id="cslp-singular-edit-button">
+         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.1 3.5L0.3 11.3C0.1 11.5 0 11.7 0 12V15C0 15.6 0.4 16 1 16H4C4.3 16 4.5 15.9 4.7 15.7L12.5 7.9L8.1 3.5Z" fill="#718096"></path>
+            <path d="M15.7 3.3L12.7 0.3C12.3 -0.1 11.7 -0.1 11.3 0.3L9.5 2.1L13.9 6.5L15.7 4.7C16.1 4.3 16.1 3.7 15.7 3.3Z" fill="#718096"></path>
+         </svg>
+         Edit
+      </div>
+   </button>
+      <script type="text/javascript">
+        function codeAddress() {
+            var d = document.getElementById(window.location.pathname);
+            d.className += " active active";
+        }
+        window.onload = codeAddress;
+   </script>
+</body>
+
 </html>

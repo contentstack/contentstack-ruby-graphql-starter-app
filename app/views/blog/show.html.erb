@@ -1,0 +1,56 @@
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal-dialog .modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h2 class="modal-title" id="staticBackdropLabel">JSON Preview</h2>
+            <span class="json-copy" aria-hidden="true">
+               <div class="Tooltip-Wrapper">
+                  <img src="/copy.svg" alt="copy icon">
+                  <div class="Tooltip-Tip top" style="display: none;">Copy</div>
+               </div>
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+      </div>
+   </div>
+</div>
+<% @blog.each {|h|  x = h.last[0] %>
+<div data-contenttype="blog_post" data-locale="en-us">
+   <div class="blog-page-banner" style="background: rgb(113, 91, 221);">
+      <div class="blog-page-content">
+         <h1 class="hero-title"><%= x["page_components"].first["hero_banner"]["banner_title"] %></h1>
+         <p class="hero-description"><%= x["page_components"].first["hero_banner"]["banner_description"] %></p>
+      </div>
+   </div>
+</div>
+ <% } %> 
+
+ 
+<div class="blog-container">
+   <% @blog_entry.each {|h|  x = h.last[0] %>
+   <article class="blog-detail">
+      <h2><%= x["title"] %></h2>
+      <p><%== x["date"].to_date.strftime("%a, %B %d %Y") %>, <strong><%== x["authorConnection"]["edges"][0]["node"]["title"] %></strong></p>
+      <div>
+         <%== x["body"] %>
+      </div>
+   </article>
+   <% } %> 
+   <div class="blog-column-right">
+      <div class="related-post">
+         <h2>Related Post</h2>
+          <% @blog_entry["items"][0]["related_postConnection"]["edges"].each {|x|  %>
+         <a href=<%= x["node"]["url"]%>>
+            <div>
+               <h4><%= x["node"]["title"] %></h4>
+               <div style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3;line-clamp: 2; -webkit-box-orient: vertical;">
+                  <%== x["node"]["body"] %>
+               </div>
+            </div>
+         </a>
+         <br/>
+          <% } %> 
+      </div>
+   </div>
+</div>

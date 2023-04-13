@@ -1,0 +1,23 @@
+# contentstack: 
+  host: '<<host>>'
+  api_key: '<<api_key>>'
+  delivery_token: '<<delivery_token>>'
+  environment: '<<environment>>'
+  region: '<<region>>'
+
+# live_preview:
+  management_token: '<<management_token>>'
+  enable: '<<true/false>>'
+  live_preview_host: '<<live_preview_host>>'
+
+# Proxy:
+  url: '<<proxy_url>>'
+  username: '<<proxy_username>>'
+  password: '<<proxy_password>>'
+  port: '3000'
+
+# RetryOptions:
+  timeout: '<<Time out in seconds>>'
+  retryDelay: '<<Error delay in seconds>>'
+  retryLimit: '<<Retry Limit>>'
+  errorRetry: '<<Error retry in array format>>'
