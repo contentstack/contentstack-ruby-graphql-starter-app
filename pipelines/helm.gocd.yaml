@@ -1,0 +1,125 @@
+format_version: 4
+pipelines:
+  ruby-graphql-starter-app-helm-package-publish:
+    group: mobile-sdk
+    label_template: ${ruby-graphql-starter-app[:7]}
+    lock_behavior: none
+    display_order: 10
+    parameters:
+      APPLICATION_GROUP: mobile-sdk
+      HELM_CHART_NAME: ruby-graphql-starter-app
+      HELM_REPO_URL: git@github.com:contentstack/helm-repository.git
+      HELM_REPO_BRANCH: main
+      GIT_CONFIG_NAME: "CI Pipeline"
+      GIT_CONFIG_EMAIL: "devops@contentstack.com"
+    materials:
+      ruby-graphql-starter-app:
+        git: git@github.com:contentstack/contentstack-ruby-graphql-starter-app.git
+        shallow_clone: false
+        branch: ci/cd
+        whitelist:
+          - helm/ruby-graphql-starter-app/**/*
+          - pipelines/helm.gocd.yaml
+    stages:
+      - helm-package:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: yes
+          approval:
+            type: success
+            allow_only_on_success: false
+          jobs:
+            lint-and-package:
+              elastic_profile_id: k8s-helm
+              timeout: 0
+              artifacts:
+                - build:
+                    source: "#{HELM_CHART_NAME}-*.tgz"
+                    destination: helm-packages
+              tasks:
+                - exec:
+                    arguments:
+                      - lint
+                      - helm/#{HELM_CHART_NAME}
+                    command: helm
+                - exec:
+                    arguments:
+                      - package
+                      - helm/#{HELM_CHART_NAME}
+                    command: helm
+      - helm-publish:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: yes
+          approval:
+            type: success
+            allow_only_on_success: true
+          jobs:
+            helm-publish:
+              elastic_profile_id: k8s-helm
+              timeout: 0
+              artifacts:
+                - build:
+                    source: helm-package-version
+                    destination: ./
+              tasks:
+                - fetch:
+                    stage: helm-package
+                    job: lint-and-package
+                    source: helm-packages/
+                    is_file: no
+                    destination: ./
+                - exec:
+                    arguments:
+                      - -c
+                      - "helm show chart helm-packages/*.tgz | sed -n 's/version: //p' > helm-package-version"
+                    command: sh
+                - exec:
+                    arguments:
+                      - -c
+                      - "git clone --single-branch --branch #{HELM_REPO_BRANCH} #{HELM_REPO_URL} helm-repository"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - "mkdir -p #{APPLICATION_GROUP}"
+                    command: sh
+                - exec:
+                    arguments:
+                      - -c
+                      - "cp helm-packages/#{HELM_CHART_NAME}-*.tgz helm-repository/#{APPLICATION_GROUP}"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - "helm repo index #{APPLICATION_GROUP}"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - git config user.email "#{GIT_CONFIG_EMAIL}" &&
+                        git config user.name "#{GIT_CONFIG_NAME}"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - git add ./
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - package_version=$(helm show chart ../helm-packages/*.tgz | sed -n 's/version:\ //p') &&
+                        package_name=$(helm show chart ../helm-packages/*.tgz | sed -n 's/name:\ //p') &&
+                        git commit -m "Add version $package_version of $package_name package"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - git push origin "#{HELM_REPO_BRANCH}"
+                    command: sh

@@ -1,0 +1,105 @@
+format_version: 4
+pipelines:
+  ruby-graphql-starter-app-prod-deploy:
+    group: mobile-sdk
+    label_template: "${ruby-graphql-starter-app-image}-${ruby-graphql-starter-app-helm-package}"
+    lock_behavior: none
+    display_order: 12
+    parameters:
+      APPLICATION_NAME: ruby-graphql-starter-app
+      APPLICATION_GROUP: mobile-sdk
+      RELEASE_REPO_URL: git@github.com:contentstack/cs-release.git
+      RELEASE_REPO_BRANCH: marketplace-release
+      HELM_REPO_URL: git@github.com:contentstack/helm-repository.git
+      HELM_REPO_BRANCH: main
+      GIT_CONFIG_NAME: "CD Pipeline"
+      GIT_CONFIG_EMAIL: "devops@contentstack.com"
+    materials:
+      ruby-graphql-starter-app-image:
+        pipeline: prod-ruby-graphql-starter-app-build-test-publish
+        stage: build-and-publish
+      ruby-graphql-starter-app-helm-package:
+        pipeline: ruby-graphql-starter-app-helm-package-publish
+        stage: helm-publish
+    stages:
+      - prod-deploy:
+          fetch_materials: true
+          keep_artifacts: false
+          clean_workspace: false
+          approval:
+            type: manual
+            roles:
+              - devops
+            allow_only_on_success: true
+          jobs:
+            prod-deploy:
+              elastic_profile_id: k8s-yaml
+              timeout: 0
+              tasks:
+                - fetch:
+                    pipeline: ruby-graphql-starter-app-helm-package-publish
+                    stage: helm-publish
+                    job: helm-publish
+                    source: helm-package-version
+                    is_file: yes
+                    destination: ./
+                - exec:
+                    arguments:
+                      - -c
+                      - "git clone --depth 1 --single-branch --branch #{HELM_REPO_BRANCH} #{HELM_REPO_URL} helm-repository"
+                    command: sh
+                - exec:
+                    arguments:
+                      - -c
+                      - "git clone --single-branch --branch #{RELEASE_REPO_BRANCH} #{RELEASE_REPO_URL} release-repository"
+                    command: sh
+                - exec:
+                    working_directory: release-repository
+                    arguments:
+                      - -c
+                      - "git config user.email #{GIT_CONFIG_EMAIL} &&
+                        git config user.name #{GIT_CONFIG_NAME}"
+                    command: sh
+                - exec:
+                    working_directory: release-repository/packages
+                    arguments:
+                      - -c
+                      - "rm -rf #{APPLICATION_NAME}"
+                    command: sh
+                - exec:
+                    working_directory: helm-repository
+                    arguments:
+                      - -c
+                      - "tar -xzf #{APPLICATION_GROUP}/#{APPLICATION_NAME}-`cat ../helm-package-version`.tgz -C ../release-repository/packages"
+                    command: sh
+                - exec:
+                    working_directory: release-repository/applications/templates
+                    arguments:
+                      - -c
+                      - "yaml_update spec/source/helm/parameters/0/name image.tag #{APPLICATION_NAME}.yaml &&
+                        yaml_update spec/source/helm/parameters/0/value `echo v$GO_PIPELINE_LABEL | cut -d'-' -f1` #{APPLICATION_NAME}.yaml"
+                    command: sh
+                - exec:
+                    working_directory: release-repository/applications/templates
+                    arguments:
+                      - -c
+                      - "echo '======== Updated configuration ========' && cat #{APPLICATION_NAME}.yaml"
+                    command: sh
+                - exec:
+                    working_directory: release-repository
+                    arguments:
+                      - -c
+                      - git add ./
+                    command: sh
+                - exec:
+                    working_directory: release-repository/applications/templates
+                    arguments:
+                      - -c
+                      - "git commit -m \"Update #{APPLICATION_NAME} to version `echo v$GO_PIPELINE_LABEL | cut -d'-' -f1` with package `cat ../../../helm-package-version`\""
+                    command: sh
+                - exec:
+                    working_directory: release-repository/scripts
+                    arguments:
+                      - -c
+                      - "./git_push.sh #{RELEASE_REPO_BRANCH}"
+                    command: sh
