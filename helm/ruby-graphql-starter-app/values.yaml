@@ -13,7 +13,7 @@ configMap:
 
 volume:
   name: ruby-graphql-starter-app-volume
-  mountPath: /config
+  mountPath: /app/config/contentstack.yml
   subPath: contentstack.yml
 
 image:
@@ -58,7 +58,7 @@ ingress:
   enabled: false
   certificateArn: arn:aws:acm:us-west-2:231223417801:certificate/22a5d132-e9af-4a3c-8d5a-475db8f67bf4
   sslPolicy: ELBSecurityPolicy-FS-1-2-Res-2019-08
-  host: php-codeigniter-starter-app.contentstackmarket.com
+  host: ruby-graphql-starter-app.contentstackmarket.com
   className: ""
   annotations:
     {}
