@@ -1,24 +1,30 @@
-# README
+[![Contentstack Logo](/public/contentstack.png)](https://www.contentstack.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# Build a Starter Website with Ruby On Rails and Contentstack
 
-* Ruby version
+About Contentstack: Contentstack is a headless CMS with an API-first approach that puts content at the centre. It is designed to simplify the process of publication by separating code from content.
 
-* System dependencies
+About this project:  This guide will help you create a starter marketing website built using the Ruby On Rails framework with minimal steps.
 
-* Configuration
 
-* Database creation
+![contentstack-react-starter-app-vercel-app](/public/starter-app.png)
 
-* Database initialization
+## Light house reports
 
-* How to run the test suite
+![contentstack-react-starter-app-vercel-app](/public/light_house_reports.png)
 
-* Services (job queues, cache servers, search engines, etc.)
+## Tutorial
 
-* Deployment instructions
+We have created an in-depth tutorial on how you can create a Ruby on Rails starter website using Contentstack’s Ruby SDK and fetch its content from Contentstack.
 
-* ...
+
+
+
+**More Resources**
+
+Read Contentstack [docs](https://www.contentstack.com/docs/)
+
+Region support [docs](https://www.contentstack.com/docs/developers/selecting-region-in-contentstack-starter-apps)
+
+Learn about [Ruby On Rails](https://guides.rubyonrails.org/getting_started.html)
