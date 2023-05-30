@@ -10,9 +10,6 @@ About this project:  This guide will help you create a starter marketing website
 
 ![contentstack-react-starter-app-vercel-app](/public/starter-app.png)
 
-## Light house reports
-
-![contentstack-react-starter-app-vercel-app](/public/light_house_reports.png)
 
 ## Tutorial
 
