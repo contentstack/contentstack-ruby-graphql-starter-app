@@ -1,4 +1,6 @@
 module Blog
+	extend ActiveSupport::Concern
+	
 	def self.blog_menu
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {

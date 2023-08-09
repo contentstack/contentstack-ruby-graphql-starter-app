@@ -1,4 +1,5 @@
 class BlogController < ApplicationController
+  include Blog
   def index
     blog_heading = Blog::blog_menu
     @blog = blog_heading.data.all_page.to_h

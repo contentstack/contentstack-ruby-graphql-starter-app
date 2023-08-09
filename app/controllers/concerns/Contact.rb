@@ -1,5 +1,6 @@
 module Contact
-
+	extend ActiveSupport::Concern
+	
 	def self.fetchContact
 	    response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query  {
