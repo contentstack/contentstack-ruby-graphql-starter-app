@@ -9,7 +9,7 @@ pipelines:
       git:
         git: git@github.com:contentstack/contentstack-ruby-graphql-starter-app.git
         shallow_clone: false
-        branch: main
+        branch: Bug-fixed-in-ubuntu-machines
         blacklist:
           - helm/**/*
           - helm.gocd.yaml
