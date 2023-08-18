@@ -127,6 +127,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.14.2-x64-mingw32)
       racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
+      racc (~> 1.4)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -136,7 +138,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.1)
-    puma (3.12.6)
+    puma (5.6.7)
+      nio4r (~> 2.0)
     racc (1.6.2)
     rack (2.2.6.4)
     rack-test (2.1.0)
@@ -197,6 +200,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.6.2-arm64-darwin)
     sqlite3 (1.6.2-x64-mingw32)
+    sqlite3 (1.6.2-x86_64-linux)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.1.0)
@@ -225,6 +229,7 @@ GEM
 PLATFORMS
   arm64-darwin-22
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
@@ -238,7 +243,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-rails
-  puma (~> 3.11)
+  puma (~> 5.6)
   rails (~> 5.2.8, >= 5.2.8.1)
   sass-rails (~> 5.0)
   selenium-webdriver
