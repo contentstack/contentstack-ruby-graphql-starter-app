@@ -1,0 +1,6 @@
+fileignoreconfig:
+- filename: config/credentials.yml.enc
+  checksum: b298a11c7861fa1336ccca9bb0cba3358d011894b696fa3d0b5a06ad3efd57a8
+- filename: config/contentstack.yml.enc
+  checksum: c98bb19165a43993bb550d7c1b9eb594847a6a11cad61cbbd38954d1302ad114
+version: ""

@@ -1,4 +1,4 @@
-class BlogController < ApplicationController
+class BlogsController < ApplicationController
   include Blog
   def index
     blog_heading = Blog::blog_menu
@@ -10,12 +10,9 @@ class BlogController < ApplicationController
 
     blog_archieved_true = Blog::getBlogArchivedTrueQuery
     @blog_archieved_true = blog_archieved_true.data.all_blog_post.to_h
-
-
   end
 
-  def show()
-
+  def show
     uid = params[:id]
     url = request.env['REQUEST_URI']
 
@@ -23,8 +20,7 @@ class BlogController < ApplicationController
     @blog = blog_heading.data.all_page.to_h
 
 
-    blog_heading = Blog::getBlogEntryByUrl(url)
+    blog_heading = Blog::getBlogEntryByUid(uid)
     @blog_entry = blog_heading.data.all_blog_post.to_h
-    
   end
 end
