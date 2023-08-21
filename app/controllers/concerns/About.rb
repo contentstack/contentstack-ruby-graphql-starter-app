@@ -1,5 +1,5 @@
 module About
-
+	extend ActiveSupport::Concern
 	def self.fetchAbout
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {

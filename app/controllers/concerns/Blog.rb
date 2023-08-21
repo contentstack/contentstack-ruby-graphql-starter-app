@@ -1,4 +1,6 @@
 module Blog
+	extend ActiveSupport::Concern
+	
 	def self.blog_menu
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
@@ -219,6 +221,9 @@ module Blog
               is_archived
               title
               url
+			  system {
+				uid
+			  }
               featured_imageConnection {
                 edges {
                   node {
@@ -256,6 +261,9 @@ module Blog
 	              is_archived
 	              title
 	              url
+				  system {
+					uid
+				  }
 	              featured_imageConnection {
 	                edges {
 	                  node {
@@ -284,16 +292,19 @@ module Blog
 		
 	end
 
-	def self.getBlogEntryByUrl(url)
+	def self.getBlogEntryByUid(uid)
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
-	          all_blog_post(where: {url: "#{url}"}) {
+	          all_blog_post(where: {uid: "#{uid}"}) {
 	            items {
 	              body
 	              date
 	              is_archived
 	              title
 	              url
+				  system {
+					uid
+				  }
 	              featured_imageConnection {
 	                edges {
 	                  node {

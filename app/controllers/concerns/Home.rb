@@ -1,5 +1,5 @@
 module Home
-
+	extend ActiveSupport::Concern
 	def self.homeQuery
 		
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL

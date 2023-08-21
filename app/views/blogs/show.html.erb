@@ -41,7 +41,7 @@
       <div class="related-post">
          <h2>Related Post</h2>
           <% @blog_entry["items"][0]["related_postConnection"]["edges"].each {|x|  %>
-         <a href=<%= x["node"]["url"]%>>
+         <a href=<%= x["node"]["system"]["uid"]%>>
             <div>
                <h4><%= x["node"]["title"] %></h4>
                <div style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3;line-clamp: 2; -webkit-box-orient: vertical;">

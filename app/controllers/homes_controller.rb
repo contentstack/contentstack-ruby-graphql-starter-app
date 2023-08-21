@@ -1,5 +1,5 @@
-class HomeController < ApplicationController
-
+class HomesController < ApplicationController
+  include Home
   def index
     
     response = Home::homeQuery

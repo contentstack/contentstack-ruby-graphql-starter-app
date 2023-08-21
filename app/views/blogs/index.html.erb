@@ -13,11 +13,11 @@
    <div class="blog-column-left">
       <% @blog_archieved_false["items"].each {|x|  %>
       <div class="blog-list">
-         <a href=<%= x[:url]%>>
+         <a href=<%= "blogs/"<<x["system"]["uid"]%>>
             <%= image_tag("#{x["featured_imageConnection"]["edges"][0]["node"]["url"]}", alt: "#{x["featured_imageConnection"]["edges"][0]["node"]["filename"]}", class: "blog-list-img" ) %>
          </a>
          <div class="blog-content">
-            <a href=<%= x["url"]%>>
+            <a href=<%="blogs/"<<x["system"]["uid"]%>>
                <h3><%= x["title"] %></h3>
             </a>
             <p><%== x["date"].to_date.strftime("%a, %B %d %Y") %>, <strong><%== x["authorConnection"]["edges"][0]["node"]["title"] %></strong></p>
@@ -25,7 +25,7 @@
                <%== x["body"] %>
             </div>
             
-            <a href=<%= x["url"]%>><span>Read more --&gt;</span></a>
+            <a href=<%= "blogs/"<<x["system"]["uid"]%>><span>Read more --&gt;</span></a>
          </div>
       </div>
       <% } %> 
@@ -34,7 +34,7 @@
    <div class="blog-column-right">
       <h2>Archived Blogs</h2>
       <% @blog_archieved_true["items"].each {|x|  %>
-      <a href=<%= x["url"]%>>
+      <a href=<%= "blogs/"<<x["system"]["uid"]%>>
          <div>
             <h4><%= x["title"] %></h4>
             <div style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3;line-clamp: 2; -webkit-box-orient: vertical;">
