@@ -1,6 +1,6 @@
 module Contact
 
-	def self.fetchContact
+	def fetchContact
 	    response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query  {
 	        all_page(where: {title: "Contact Us"}) {

@@ -1,6 +1,6 @@
 module About
 
-	def self.fetchAbout
+	def fetchAbout
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
 	        all_page(where: {title: "About Us"}) {

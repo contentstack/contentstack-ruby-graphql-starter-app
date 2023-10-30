@@ -1,7 +1,5 @@
 module Home
-
-	def self.homeQuery
-		
+	def homeQuery
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
 	        all_page(where: {title: "Home"}) {

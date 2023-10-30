@@ -1,5 +1,5 @@
 module Blog
-	def self.blog_menu
+	def blog_menu
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
 	        all_page(where: {title: "Blog"}) {
@@ -209,7 +209,7 @@ module Blog
 
 	end
 
-	def self.getBlogArchivedFalseQuery
+	def getBlogArchivedFalseQuery
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query  {
           all_blog_post(where: {is_archived: false}) {
@@ -246,7 +246,7 @@ module Blog
 	    GRAPHQL
 	end
 
-	def self.getBlogArchivedTrueQuery
+	def getBlogArchivedTrueQuery
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query  {
 	          all_blog_post(where: {is_archived: true}) {
@@ -284,7 +284,7 @@ module Blog
 		
 	end
 
-	def self.getBlogEntryByUrl(url)
+	def getBlogEntryByUrl(url)
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
 	          all_blog_post(where: {url: "#{url}"}) {
@@ -334,6 +334,4 @@ module Blog
 	        }
 	    GRAPHQL
 	end
-
-
 end
