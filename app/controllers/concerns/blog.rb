@@ -1,9 +1,8 @@
-module About
-
-	def fetchAbout
+module Blog
+	def blog_menu
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
-	        all_page(where: {title: "About Us"}) {
+	        all_page(where: {title: "Blog"}) {
 	          items {
 	            page_components {
 	              ... on PagePageComponentsHeroBanner {
@@ -206,6 +205,133 @@ module About
 	        email
 	        phone
 	      }
+	    GRAPHQL
+
+	end
+
+	def getBlogArchivedFalseQuery
+		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query  {
+          all_blog_post(where: {is_archived: false}) {
+            items {
+              body
+              date
+              is_archived
+              title
+              url
+              featured_imageConnection {
+                edges {
+                  node {
+                    content_type
+                    description
+                    title
+                    url
+                    filename
+                  }
+                }
+              }
+              authorConnection {
+                edges {
+                  node {
+                    ... on Author {
+                      title
+                      bio
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+	    GRAPHQL
+	end
+
+	def getBlogArchivedTrueQuery
+		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query  {
+	          all_blog_post(where: {is_archived: true}) {
+	            items {
+	              body
+	              date
+	              is_archived
+	              title
+	              url
+	              featured_imageConnection {
+	                edges {
+	                  node {
+	                    content_type
+	                    description
+	                    title
+	                    url
+	                    filename
+	                  }
+	                }
+	              }
+	              authorConnection {
+	                edges {
+	                  node {
+	                    ... on Author {
+	                      title
+	                      bio
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	    GRAPHQL
+		
+	end
+
+	def getBlogEntryByUrl(url)
+		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query {
+	          all_blog_post(where: {url: "#{url}"}) {
+	            items {
+	              body
+	              date
+	              is_archived
+	              title
+	              url
+	              featured_imageConnection {
+	                edges {
+	                  node {
+	                    content_type
+	                    description
+	                    title
+	                    url
+	                    filename
+	                  }
+	                }
+	              }
+	              authorConnection {
+	                edges {
+	                  node {
+	                    ... on Author {
+	                      title
+	                    }
+	                  }
+	                }
+	              }
+	              related_postConnection {
+	                edges {
+	                  node {
+	                    ... on BlogPost {
+	                      title
+	                      url
+	                      system {
+	                        uid
+	                      }
+	                      body
+	                      date
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
 	    GRAPHQL
 	end
 end

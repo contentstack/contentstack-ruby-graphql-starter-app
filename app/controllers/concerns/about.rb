@@ -1,9 +1,9 @@
-module Contact
+module About
 
-	def fetchContact
-	    response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query  {
-	        all_page(where: {title: "Contact Us"}) {
+	def fetchAbout
+		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query {
+	        all_page(where: {title: "About Us"}) {
 	          items {
 	            page_components {
 	              ... on PagePageComponentsHeroBanner {
@@ -160,6 +160,22 @@ module Contact
 	                  employees {
 	                    designation
 	                    name
+	                    imageConnection {
+	                      edges {
+	                        node {
+	                          url
+	                          title
+	                          filename
+	                          file_size
+	                          description
+	                          content_type
+	                          system {
+	                            content_type_uid
+	                            uid
+	                          }
+	                        }
+	                      }
+	                    }
 	                  }
 	                }
 	              }
@@ -191,7 +207,5 @@ module Contact
 	        phone
 	      }
 	    GRAPHQL
-
 	end
-
 end
