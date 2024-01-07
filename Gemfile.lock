@@ -47,6 +47,7 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
+    base64 (0.2.0)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
@@ -78,7 +79,8 @@ GEM
     duktape (2.7.0.0)
     erubi (1.12.0)
     execjs (2.8.1)
-    faraday (2.7.4)
+    faraday (2.8.1)
+      base64
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
@@ -86,14 +88,15 @@ GEM
     ffi (1.15.5-x64-mingw32)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    graphlient (0.7.0)
+    graphlient (0.8.0)
       faraday (~> 2.0)
       graphql-client
-    graphql (2.0.20)
+    graphql (2.2.4)
+      racc (~> 1.4)
     graphql-client (0.18.0)
       activesupport (>= 3.0)
       graphql
-    i18n (1.12.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.1)
     jbuilder (2.11.5)
@@ -111,7 +114,8 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
+    mini_portile2 (2.8.5)
+    minitest (5.20.0)
     msgpack (1.7.0)
     net-imap (0.3.4)
       date
@@ -123,6 +127,9 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-x64-mingw32)
@@ -195,6 +202,8 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.2)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.2-arm64-darwin)
     sqlite3 (1.6.2-x64-mingw32)
     thor (1.2.1)
@@ -224,6 +233,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -233,7 +243,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   duktape
-  graphlient
+  graphlient (>= 0.8.0)
   jbuilder (~> 2.5)
   pry
   pry-byebug
