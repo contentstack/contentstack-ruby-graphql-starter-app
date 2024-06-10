@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module ContentstackRubyGraphqlStarterApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
+    protect_from_forgery with: :exception
 
     config.load_defaults 5.2
     config.before_configuration do
@@ -25,12 +26,10 @@ module ContentstackRubyGraphqlStarterApp
 
   end
 
-  Client = Graphlient::Client.new("https://#{ENV["host"]}/stacks/#{ENV["api_key"]}?environment=#{ENV["environment"]}", 
+  Client = Graphlient::Client.new("https://#{ENV["host"]}/stacks/#{ENV["api_key"]}?environment=#{ENV["environment"]}",
       headers: {
         'access_token' => ENV["delivery_token"]
       },
       schema_path: Application.root.join('db/schema.json')
-      
   )
-  
 end
