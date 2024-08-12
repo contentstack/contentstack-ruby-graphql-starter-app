@@ -111,6 +111,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.7)
     minitest (5.18.0)
     msgpack (1.7.0)
     net-imap (0.3.4)
@@ -123,6 +124,9 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.14.2)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     nokogiri (1.14.2-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-x64-mingw32)
@@ -170,7 +174,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.7.0)
-    rexml (3.2.5)
+    rexml (3.3.5)
+      strscan
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -184,7 +189,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    selenium-webdriver (4.8.6)
+    selenium-webdriver (4.9.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -195,8 +200,11 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    sqlite3 (1.6.2)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.2-arm64-darwin)
     sqlite3 (1.6.2-x64-mingw32)
+    strscan (3.1.0)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.1.0)
@@ -215,7 +223,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    websocket (1.2.9)
+    websocket (1.2.11)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -224,6 +232,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -241,7 +250,7 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.8, >= 5.2.8.1)
   sass-rails (~> 5.0)
-  selenium-webdriver
+  selenium-webdriver (>= 4.9.0)
   sqlite3
   turbolinks (~> 5)
   tzinfo-data
