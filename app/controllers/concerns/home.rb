@@ -1,9 +1,8 @@
-module Contact
-
-	def self.fetchContact
-	    response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query  {
-	        all_page(where: {title: "Contact Us"}) {
+module Home
+	def homeQuery
+		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query {
+	        all_page(where: {title: "Home"}) {
 	          items {
 	            page_components {
 	              ... on PagePageComponentsHeroBanner {
@@ -192,6 +191,9 @@ module Contact
 	      }
 	    GRAPHQL
 
+   
+   
 	end
+
 
 end
