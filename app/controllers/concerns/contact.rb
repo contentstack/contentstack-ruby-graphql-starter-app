@@ -1,8 +1,9 @@
-module Blog
-	def self.blog_menu
-		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query {
-	        all_page(where: {title: "Blog"}) {
+module Contact
+
+	def fetchContact
+	    response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
+	      query  {
+	        all_page(where: {title: "Contact Us"}) {
 	          items {
 	            page_components {
 	              ... on PagePageComponentsHeroBanner {
@@ -159,22 +160,6 @@ module Blog
 	                  employees {
 	                    designation
 	                    name
-	                    imageConnection {
-	                      edges {
-	                        node {
-	                          url
-	                          title
-	                          filename
-	                          file_size
-	                          description
-	                          content_type
-	                          system {
-	                            content_type_uid
-	                            uid
-	                          }
-	                        }
-	                      }
-	                    }
 	                  }
 	                }
 	              }
@@ -208,132 +193,5 @@ module Blog
 	    GRAPHQL
 
 	end
-
-	def self.getBlogArchivedFalseQuery
-		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query  {
-          all_blog_post(where: {is_archived: false}) {
-            items {
-              body
-              date
-              is_archived
-              title
-              url
-              featured_imageConnection {
-                edges {
-                  node {
-                    content_type
-                    description
-                    title
-                    url
-                    filename
-                  }
-                }
-              }
-              authorConnection {
-                edges {
-                  node {
-                    ... on Author {
-                      title
-                      bio
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-	    GRAPHQL
-	end
-
-	def self.getBlogArchivedTrueQuery
-		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query  {
-	          all_blog_post(where: {is_archived: true}) {
-	            items {
-	              body
-	              date
-	              is_archived
-	              title
-	              url
-	              featured_imageConnection {
-	                edges {
-	                  node {
-	                    content_type
-	                    description
-	                    title
-	                    url
-	                    filename
-	                  }
-	                }
-	              }
-	              authorConnection {
-	                edges {
-	                  node {
-	                    ... on Author {
-	                      title
-	                      bio
-	                    }
-	                  }
-	                }
-	              }
-	            }
-	          }
-	        }
-	    GRAPHQL
-		
-	end
-
-	def self.getBlogEntryByUrl(url)
-		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
-	      query {
-	          all_blog_post(where: {url: "#{url}"}) {
-	            items {
-	              body
-	              date
-	              is_archived
-	              title
-	              url
-	              featured_imageConnection {
-	                edges {
-	                  node {
-	                    content_type
-	                    description
-	                    title
-	                    url
-	                    filename
-	                  }
-	                }
-	              }
-	              authorConnection {
-	                edges {
-	                  node {
-	                    ... on Author {
-	                      title
-	                    }
-	                  }
-	                }
-	              }
-	              related_postConnection {
-	                edges {
-	                  node {
-	                    ... on BlogPost {
-	                      title
-	                      url
-	                      system {
-	                        uid
-	                      }
-	                      body
-	                      date
-	                    }
-	                  }
-	                }
-	              }
-	            }
-	          }
-	        }
-	    GRAPHQL
-	end
-
 
 end
