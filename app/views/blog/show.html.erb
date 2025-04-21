@@ -31,7 +31,7 @@
    <% @blog_entry.each {|h|  x = h.last[0] %>
    <article class="blog-detail">
       <h2><%= x["title"] %></h2>
-      <p><%= x["date"].to_date.strftime("%a, %B %d %Y") %>, <strong><%== x["authorConnection"]["edges"][0]["node"]["title"] %></strong></p>
+      <p><%= x["date"].to_date.strftime("%a, %B %d %Y") %>, <strong><%= x["authorConnection"]["edges"][0]["node"]["title"] %></strong></p>
       <div>
          <%= x["body"] %>
       </div>
@@ -41,7 +41,7 @@
       <div class="related-post">
          <h2>Related Post</h2>
           <% @blog_entry["items"][0]["related_postConnection"]["edges"].each {|x|  %>
-         <a href="<%= x["node"]["url"]%>">
+         <a href="/<%= x["node"]["url"].sub(%r{^/+}, '')%>">
             <div>
                <h4><%= x["node"]["title"] %></h4>
                <div style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3;line-clamp: 2; -webkit-box-orient: vertical;">
