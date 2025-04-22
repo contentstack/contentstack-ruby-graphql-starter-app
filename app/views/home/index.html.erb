@@ -15,7 +15,7 @@
 	  <div class="home-content">
 	     <h2><%= x["page_components"][1]["section"]["title_h2"] %></h2>
 	     <p><%= x["page_components"][1]["section"]["description"] %></p>
-	     <a class="btn secondary-btn" href="<%= x["page_components"][1]["section"]["call_to_action"]["href"]%>"><%= x["page_components"][1]["section"]["call_to_action"]["title"] %></a>
+	     <a class="btn secondary-btn" href="/<%= x["page_components"][1]["section"]["call_to_action"]["href"].sub(%r{^/+}, '')%>"><%= x["page_components"][1]["section"]["call_to_action"]["title"] %></a>
 	  </div>
 	</div>
 	<div class="member-main-section">
@@ -40,7 +40,7 @@
 	<div class="community-section">
 	  <div class="community-head">
 	     <h2><%= x["page_components"][3]["from_blog"]["title_h2"] %></h2>
-	     <a class="btn secondary-btn article-btn" href= "<%= x["page_components"][3]["from_blog"]["view_articles"]["href"] %>" > <%= x["page_components"][3]["from_blog"]["view_articles"]["title"] %></a>
+	     <a class="btn secondary-btn article-btn" href= "/<%= x["page_components"][3]["from_blog"]["view_articles"]["href"].sub(%r{^/+}, '') %>" > <%= x["page_components"][3]["from_blog"]["view_articles"]["title"] %></a>
 	  </div>
 	  <div class="home-featured-blogs">
 	  	<% x["page_components"][3]["from_blog"]["featured_blogsConnection"]["edges"].each {|x| %>
@@ -51,7 +51,7 @@
 	            <div class="blog_body" style="overflow: hidden;text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 5;       line-clamp: 2; -webkit-box-orient: vertical;">
                    <p> <%= x["node"]["body"] %> </p>
                 </div>
-	           <a class="btn tertiary-btn" href="<%= x["node"]["url"]%>">Read more --&gt;</a>
+	           <a class="btn tertiary-btn" href="/<%= x["node"]["url"].sub(%r{^/+}, '')%>">Read more --&gt;</a>
 	        </div>
 	     </div>
 	     <% } %> 
@@ -63,7 +63,7 @@
 	  	<div class="cards">
 	     <h3><%= x["page_components"][4]["section_with_cards"]["cards"][k]["title_h3"] %></h3>
 	     <p><%= x["page_components"][4]["section_with_cards"]["cards"][k]["description"] %></p>
-	     <div class="card-cta"><a class="btn primary-btn" href="<%= x["page_components"][4]["section_with_cards"]["cards"][k]["call_to_action"]["href"]%>" ><%= x["page_components"][4]["section_with_cards"]["cards"][k]["call_to_action"]["title"] %></a></div>
+	     <div class="card-cta"><a class="btn primary-btn" href="/<%= x["page_components"][4]["section_with_cards"]["cards"][k]["call_to_action"]["href"].sub(%r{^/+}, '')%>" ><%= x["page_components"][4]["section_with_cards"]["cards"][k]["call_to_action"]["title"] %></a></div>
 	  	</div>
 	  <% } %>
 	  
