@@ -1,10 +1,9 @@
-module Home
+module About
 
-	def self.homeQuery
-		
+	def fetchAbout
 		response = ContentstackRubyGraphqlStarterApp::Client.query <<~GRAPHQL
 	      query {
-	        all_page(where: {title: "Home"}) {
+	        all_page(where: {title: "About Us"}) {
 	          items {
 	            page_components {
 	              ... on PagePageComponentsHeroBanner {
@@ -161,6 +160,22 @@ module Home
 	                  employees {
 	                    designation
 	                    name
+	                    imageConnection {
+	                      edges {
+	                        node {
+	                          url
+	                          title
+	                          filename
+	                          file_size
+	                          description
+	                          content_type
+	                          system {
+	                            content_type_uid
+	                            uid
+	                          }
+	                        }
+	                      }
+	                    }
 	                  }
 	                }
 	              }
@@ -192,10 +207,5 @@ module Home
 	        phone
 	      }
 	    GRAPHQL
-
-   
-   
 	end
-
-
 end

@@ -1,5 +1,30 @@
 [![Contentstack Logo](/public/contentstack.png)](https://www.contentstack.com/)
 
+## Getting Started
+1. Install Ruby gems (if you haven't yet):
+
+	```bash
+	$ bundle install
+	```
+
+2. Generate a secret key (if you haven't yet):
+
+	```bash
+	$ rails secret
+	```
+
+   Set the generated key in your environment as SECRET_KEY_BASE.
+
+3. Start the Rails server:
+
+	```bash
+	$ bin/rails server
+	```
+4. Access the app: Open your browser and Go to `http://localhost:3000` you'll see the Rails starter app.
+  
+### ⚠️ Important
+Please generate a new secret key by following the above steps to avoid potential security issues.
+
 
 # Build a Starter Website with Ruby On Rails and Contentstack
 

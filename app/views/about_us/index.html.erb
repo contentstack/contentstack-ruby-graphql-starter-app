@@ -19,7 +19,7 @@
                   <div class="mission-section-content">
                      <h3><%= x["page_components"][1]["section_with_buckets"]["buckets"][0]["title_h3"] %></h3>
                      <div>
-                        <p><%== x["page_components"][1]["section_with_buckets"]["buckets"][0]["description"] %></p>
+                        <p><%= x["page_components"][1]["section_with_buckets"]["buckets"][0]["description"] %></p>
                      </div>
                   </div>
                </div>
@@ -28,7 +28,7 @@
                   <div class="mission-section-content">
                      <h3><%= x["page_components"][1]["section_with_buckets"]["buckets"][1]["title_h3"] %></h3>
                      <div>
-                        <p><%== x["page_components"][1]["section_with_buckets"]["buckets"][1]["description"] %></p>
+                        <p><%= x["page_components"][1]["section_with_buckets"]["buckets"][1]["description"] %></p>
                      </div>
                   </div>
                </div>
@@ -39,7 +39,7 @@
                   <div class="mission-section-content">
                      <h3><%= x["page_components"][1]["section_with_buckets"]["buckets"][2]["title_h3"] %></h3>
                      <div>
-                        <p><%== x["page_components"][1]["section_with_buckets"]["buckets"][2]["description"] %></p>
+                        <p><%= x["page_components"][1]["section_with_buckets"]["buckets"][2]["description"] %></p>
                      </div>
                   </div>
                </div>
@@ -48,7 +48,7 @@
                   <div class="mission-section-content">
                     <h3><%= x["page_components"][1]["section_with_buckets"]["buckets"][3]["title_h3"] %></h3>
                      <div>
-                        <p><%== x["page_components"][1]["section_with_buckets"]["buckets"][3]["description"] %></p>
+                        <p><%= x["page_components"][1]["section_with_buckets"]["buckets"][3]["description"] %></p>
                      </div>
                   </div>
                </div>
@@ -59,8 +59,9 @@
          <div class="home-content">
             <h2><%= x["page_components"][2]["section"]["title_h2"] %></h2>
             <p><%= x["page_components"][2]["section"]["description"] %></p>
-            <a class="btn secondary-btn" href=<%= x["page_components"][2]["section"]["call_to_action"]["href"]%> ><%= x["page_components"][2]["section"]["call_to_action"]["title"] %></a>
-
+            <a class="btn secondary-btn" href="/<%= x["page_components"][2]["section"]["call_to_action"]["href"].sub(%r{^/+}, '') %>">
+               <%= x["page_components"][2]["section"]["call_to_action"]["title"] %>
+            </a>
          </div>
          <%= image_tag("#{x["page_components"][2]["section"]["imageConnection"]["edges"][0]["node"]["url"]}", alt: "#{x["page_components"][2]["section"]["imageConnection"]["edges"][0]["node"]["filename"]}" ) %>
       </div>
