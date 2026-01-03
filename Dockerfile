@@ -1,6 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM ruby:4.0.0-slim
-RUN apt-get update -qq && apt-get install -y \
+# Update all packages to fix security vulnerabilities
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
     nodejs \
     build-essential \
     pkg-config \
