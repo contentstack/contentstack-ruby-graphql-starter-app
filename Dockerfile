@@ -1,6 +1,12 @@
 # syntax=docker/dockerfile:1
-FROM ruby:2.7.8
-RUN apt-get update -qq && apt-get install -y nodejs
+FROM ruby:4.0.0-slim
+# Update all packages to fix security vulnerabilities
+RUN apt-get update && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends \
+    nodejs \
+    build-essential \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
 # Create a non-root user and group
 RUN groupadd -r appuser && useradd -r -g appuser appuser
 WORKDIR /app
