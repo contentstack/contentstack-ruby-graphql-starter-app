@@ -1,14 +1,15 @@
 # syntax=docker/dockerfile:1
-FROM ruby:4.0.0-slim
+FROM ruby:4.0.0-alpine3.22
 # Update all packages to fix security vulnerabilities
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends \
+RUN apk update && apk upgrade \
+    && apk add --no-cache \
     nodejs \
-    build-essential \
-    pkg-config \
-    && rm -rf /var/lib/apt/lists/*
+    build-base \
+    pkgconfig \
+    linux-headers \
+    && rm -rf /var/cache/apk/*
 # Create a non-root user and group
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN addgroup -S appuser && adduser -S -G appuser appuser
 WORKDIR /app
 COPY Gemfile .
 COPY Gemfile.lock .
@@ -20,7 +21,7 @@ COPY . .
 COPY entrypoint.sh /usr/bin/
 
 COPY ngnix.conf /etc/nginx/nginx.conf
-ENV RAILS_ENV development
+ENV RAILS_ENV=development
 
 RUN chmod +x /usr/bin/entrypoint.sh
 # Switch to the non-root user before running commands
