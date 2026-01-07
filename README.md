@@ -1,3 +1,6 @@
+> [!WARNING]
+  **This repo is deprecated and no longer maintained. Security updates are not supported. We recommend avoiding its use.** We recommend viewing our latest [Kickstarts](https://www.contentstack.com/docs/developers/kickstarts).
+  
 [![Contentstack Logo](/public/contentstack.png)](https://www.contentstack.com/)
 
 ## Getting Started
