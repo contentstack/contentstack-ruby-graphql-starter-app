@@ -95,7 +95,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    cgi (0.5.2)
+    cgi (0.5.1)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
@@ -113,7 +113,7 @@ GEM
     date (3.5.1)
     drb (2.2.3)
     duktape (2.7.0.0)
-    erb (4.0.4.1)
+    erb (4.0.4)
       cgi (>= 0.3.3)
     erubi (1.13.1)
     execjs (2.10.0)
@@ -121,10 +121,10 @@ GEM
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
-    faraday-net_http (3.4.4)
-      net-http (~> 0.5)
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
     ffi (1.17.1)
-    fiber-storage (1.0.1)
+    fiber-storage (1.0.0)
     globalid (1.3.0)
       activesupport (>= 6.1)
     graphlient (0.8.0)
@@ -159,15 +159,15 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.1)
+    marcel (1.1.0)
     matrix (0.4.2)
     method_source (1.1.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
     minitest (5.27.0)
     msgpack (1.8.5)
-    net-http (0.9.1)
-      uri (>= 0.11.1)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.15)
       date
       net-protocol
@@ -181,9 +181,7 @@ GEM
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.4-arm64-darwin)
-      racc (~> 1.4)
-    pp (0.6.4)
+    pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
     pry (0.14.2)
@@ -197,7 +195,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (6.0.2)
+    public_suffix (6.0.1)
     puma (7.2.1)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -241,7 +239,7 @@ GEM
       tsort (>= 0.2)
       zeitwerk (~> 2.6)
     rake (13.3.1)
-    rdoc (7.0.4)
+    rdoc (7.0.3)
       erb
       psych (>= 4.0.0)
       tsort
@@ -278,22 +276,19 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (2.9.6)
       mini_portile2 (~> 2.8.0)
-    sqlite3 (2.9.6-arm64-darwin)
     stringio (3.2.0)
     thor (1.4.0)
     tilt (2.6.0)
-    timeout (0.6.1)
+    timeout (0.6.0)
     tsort (0.2.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    tzinfo-data (1.2026.4)
-      tzinfo (>= 1.0.0)
     uglifier (4.2.1)
       execjs (>= 0.3.0, < 3)
-    uri (1.1.1)
+    uri (1.0.4)
     useragent (0.16.11)
     web-console (4.2.1)
       actionview (>= 6.0.0)
